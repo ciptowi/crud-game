@@ -9,14 +9,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // this.belongsTo(models.User, {
-      //   foreignKey: "id",
-      //   as: "defaultUser",
-      // });
+      this.belongsTo(models.User, {
+        foreignKey: "user_id",
+      });
     }
   }
   User_game.init(
     {
+      user_id: DataTypes.INTEGER,
+      UserId: DataTypes.INTEGER,
       difficulty: DataTypes.STRING,
       level: DataTypes.INTEGER,
       have_won: DataTypes.INTEGER,

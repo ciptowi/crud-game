@@ -12,21 +12,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // this.hasMany(models.User_biodata);
-      // this.hasMany(models.User_game);
+      this.hasOne(models.User_biodata);
+      this.hasOne(models.User_game);
     }
   }
   User.init(
     {
       username: DataTypes.STRING,
       password: DataTypes.STRING,
-      // fullname: DataTypes.STRING,
-      // gender: DataTypes.STRING,
-      // address: DataTypes.STRING,
-      // difficulty: DataTypes.STRING,
-      // level: DataTypes.INTEGER,
-      // have_won: DataTypes.INTEGER,
-      // have_lost: DataTypes.INTEGER,
     },
     {
       sequelize,
