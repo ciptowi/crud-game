@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // this.hasMany(models.User_biodata);
-      // this.hasMany(models.User_game);
+      this.hasOne(models.User_biodata);
+      this.hasOne(models.User_game);
     }
   }
   User.init(

@@ -9,14 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // this.belongsTo(models.User, {
-      //   foreignKey: "id",
-      //   as: "defaultUser",
-      // });
+      this.belongsTo(models.User, {
+        foreignKey: "userId",
+      });
     }
   }
   User_biodata.init(
     {
+      userId: DataTypes.INTEGER,
       fullname: DataTypes.STRING,
       gender: DataTypes.STRING,
       address: DataTypes.STRING,
