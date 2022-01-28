@@ -1,7 +1,4 @@
-const user_biodata = require("./user_biodata");
-const user_game = require("./user_game");
-
-("use strict");
+"use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -12,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models.User_biodata);
-      this.hasOne(models.User_game);
+      this.hasOne(models.UserBiodata);
+      this.hasOne(models.UserGame);
     }
   }
   User.init(

@@ -1,4 +1,4 @@
-const { User, User_biodata, User_game, sequelize } = require("./models");
+const { User, UserBiodata, UserGame, sequelize } = require("./models");
 
 module.exports = {
   home: (req, res) => {
@@ -19,7 +19,7 @@ module.exports = {
     User.findOne({
       model: User,
       where: { id: req.params.id },
-      include: [{ model: User_biodata }, { model: User_game }],
+      include: [{ model: UserBiodata }, { model: UserGame }],
     }).then((a) => {
       // res.status(200).json(a);
       res.status(200).render("user", { a });
@@ -30,7 +30,7 @@ module.exports = {
     User.findOne({
       model: User,
       where: { id: req.params.id },
-      include: [{ model: User_biodata }, { model: User_game }],
+      include: [{ model: UserBiodata }, { model: UserGame }],
     }).then((a) => {
       // res.status(200).json(a);
       res.status(200).render("form_update", { a });
@@ -50,9 +50,8 @@ module.exports = {
           transaction: userTransaction,
         }
       );
-      await User_biodata.create(
+      await UserBiodata.create(
         {
-          user_id: resUser.dataValues.id,
           UserId: resUser.dataValues.id,
           fullname: req.body.fullname,
           gender: req.body.gender,
@@ -62,9 +61,8 @@ module.exports = {
           transaction: userTransaction,
         }
       );
-      await User_game.create(
+      await UserGame.create(
         {
-          user_id: resUser.dataValues.id,
           UserId: resUser.dataValues.id,
           difficulty: req.body.difficulty,
           level: req.body.level,
@@ -96,17 +94,17 @@ module.exports = {
           where: { id: req.params.id },
         }
       );
-      await User_biodata.update(
+      await UserBiodata.update(
         {
           fullname: req.body.fullname,
           gender: req.body.gender,
           address: req.body.address,
         },
         {
-          where: { user_id: req.params.id },
+          where: { UserId: req.params.id },
         }
       );
-      await User_game.update(
+      await UserGame.update(
         {
           difficulty: req.body.difficulty,
           level: req.body.level,
@@ -114,7 +112,7 @@ module.exports = {
           have_lost: req.body.have_lost,
         },
         {
-          where: { user_id: req.params.id },
+          where: { UserId: req.params.id },
         }
       );
 
@@ -130,11 +128,11 @@ module.exports = {
     User.destroy({
       where: { id: req.params.id },
     });
-    User_biodata.destroy({
-      where: { user_id: req.params.id },
+    UserBiodata.destroy({
+      where: { UserId: req.params.id },
     });
-    User_game.destroy({
-      where: { user_id: req.params.id },
+    UserGame.destroy({
+      where: { UserId: req.params.id },
     }).then((a) => {
       res.render("message/deleted");
     });
