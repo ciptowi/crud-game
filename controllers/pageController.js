@@ -1,4 +1,4 @@
-const { User, UserBiodata, UserGame, sequelize } = require("./models");
+const { User, UserBiodata, UserGame, sequelize } = require("../models");
 
 module.exports = {
   home: (req, res) => {
